@@ -1,0 +1,234 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.1",
+    "title": "永c - hello-swagger",
+    "description": "我的第一支 swagger 學習"
+  },
+  "host": "localhost: 3000",
+  "basePath": "",
+  "tags": [
+    {
+      "name": "index",
+      "description": "index tag description"
+    },
+    {
+      "name": "users",
+      "description": "users tag description"
+    }
+  ],
+  "schemes": [],
+  "securityDefinitions": {},
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "index"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/users/": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Some get summary...",
+        "description": "Some description...",
+        "operationId": "Your_operationId_here",
+        "parameters": [
+          {
+            "name": "foo",
+            "in": "query",
+            "description": "Some parameters query description...",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 User successfully obtained",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Jhon Doe"
+                },
+                "age": {
+                  "type": "number",
+                  "example": 29
+                },
+                "about": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "201": {
+            "description": "201 User successfully obtained , schema ref to #/definitions/AddUser",
+            "schema": {
+              "$ref": "#/definitions/AddUser"
+            }
+          },
+          "500": {
+            "description": "Some description..."
+          }
+        }
+      }
+    },
+    "/users/post": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Some post summary...",
+        "description": "",
+        "parameters": [
+          {
+            "name": "foo",
+            "in": "body",
+            "description": "Some body parameters description...",
+            "schema": {
+              "$ref": "#/definitions/AddUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/put": {
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/delete": {
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Parents": {
+      "type": "object",
+      "properties": {
+        "father": {
+          "type": "string",
+          "example": "Simon Doe"
+        },
+        "mother": {
+          "type": "string",
+          "example": "Marie Doe"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "doc definition : Jhon Doe"
+        },
+        "age": {
+          "type": "number",
+          "example": 29
+        },
+        "parents": {
+          "$ref": "#/definitions/Parents"
+        },
+        "diplomas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "school": {
+                "type": "string",
+                "example": "XYZ University"
+              },
+              "year": {
+                "type": "number",
+                "example": 2020
+              },
+              "completed": {
+                "type": "boolean",
+                "example": true
+              },
+              "internship": {
+                "type": "object",
+                "properties": {
+                  "hours": {
+                    "type": "number",
+                    "example": 290
+                  },
+                  "location": {
+                    "type": "string",
+                    "example": "XYZ Company"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "AddUser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "doc definition : Jhon Doe"
+        },
+        "age": {
+          "type": "number",
+          "example": 29
+        },
+        "about": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "name",
+        "age"
+      ]
+    }
+  },
+  "components": {
+    "examples": {
+      "User": {
+        "value": {
+          "name": "doc example : Jhon Doe",
+          "age": 29
+        },
+        "summary": "Sample for User"
+      }
+    }
+  }
+}
